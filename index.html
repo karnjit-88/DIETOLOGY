@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dietology — Personalised Diet Plans & Wellness Products</title>
+<meta name="description" content="Transform your health with personalised diet plans and premium wellness products. Expert dietitian guidance for weight loss, diabetes, PCOS and more."/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --m:#3db886;--m1:#e8f7f0;--m2:#c5ead9;--m4:#2a8f66;
+  --p1:#fef0ea;--p2:#fcd5bf;--p3:#f0845a;
+  --l1:#f0eefe;--l2:#d8d1fb;--l3:#7c6fe0;
+  --y1:#fdfae8;--y2:#f5eea3;--y3:#c8aa20;
+  --r1:#fdeef3;--r2:#f8c8d8;--r3:#d4547e;
+  --s1:#eaf4fe;--s2:#bddcfa;--s3:#3a8dde;
+  --tx:#2d2d2d;--txm:#6b6b6b;--txl:#9a9a9a;
+  --bg:#faf9f7;--card:#fff;--bd:#e8e8e8;
+}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--tx);font-size:15px;line-height:1.6;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--bd);backdrop-filter:blur(12px);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:.875rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.brand-dot{width:38px;height:38px;border-radius:11px;background:var(--m);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.brand-dot svg{width:19px;height:19px;fill:#fff;}
+.brand-name{font-size:19px;font-weight:700;letter-spacing:-.4px;color:var(--tx);}
+.brand-name em{font-style:normal;color:var(--m);}
+.nav-links{display:flex;align-items:center;gap:8px;}
+.nav-link{font-size:13px;font-weight:500;color:var(--txm);text-decoration:none;padding:7px 14px;border-radius:20px;transition:all .15s;}
+.nav-link:hover{background:var(--m1);color:var(--m4);}
+.nav-cta{background:var(--m);color:#fff;padding:9px 20px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;transition:background .15s;}
+.nav-cta:hover{background:var(--m4);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--tx);border-radius:2px;transition:all .3s;}
+.mobile-menu{display:none;background:#fff;border-bottom:1px solid var(--bd);padding:1rem 1.5rem;}
+.mobile-menu.open{display:block;}
+.mobile-menu a{display:block;padding:10px 0;font-size:14px;font-weight:500;color:var(--txm);text-decoration:none;border-bottom:1px solid var(--bd);}
+.mobile-menu a:last-child{border-bottom:none;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#f0f9f4 0%,#fef9f0 50%,#f0eefe 100%);padding:5rem 1.5rem 4rem;}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--m1);color:var(--m4);border:1px solid var(--m2);font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;margin-bottom:1.25rem;}
+.hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.15;letter-spacing:-.5px;margin-bottom:1.25rem;color:var(--tx);}
+.hero h1 span{color:var(--m);}
+.hero p{font-size:16px;color:var(--txm);line-height:1.7;margin-bottom:2rem;max-width:480px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{background:var(--m);color:#fff;padding:13px 28px;border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background .15s;border:none;cursor:pointer;font-family:inherit;}
+.btn-primary:hover{background:var(--m4);}
+.btn-secondary{background:#fff;color:var(--m4);padding:13px 28px;border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:2px solid var(--m2);transition:all .15s;cursor:pointer;font-family:inherit;}
+.btn-secondary:hover{background:var(--m1);}
+.hero-visual{display:flex;flex-direction:column;gap:12px;}
+.hero-card{background:#fff;border-radius:16px;padding:1.25rem;border:1px solid var(--bd);display:flex;align-items:center;gap:14px;}
+.hero-card-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.hero-stat{background:#fff;border-radius:14px;padding:1rem;border:1px solid var(--bd);text-align:center;}
+.hero-stat-num{font-size:26px;font-weight:800;color:var(--m);}
+.hero-stat-label{font-size:11px;color:var(--txm);margin-top:2px;}
+
+/* SECTIONS */
+section{padding:4rem 1.5rem;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-tag{display:inline-block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding:4px 14px;border-radius:20px;margin-bottom:1rem;}
+.section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-.3px;margin-bottom:.75rem;}
+.section-sub{font-size:15px;color:var(--txm);max-width:560px;line-height:1.7;}
+
+/* HOW IT WORKS */
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;}
+.step-card{background:#fff;border-radius:18px;padding:1.5rem;border:1px solid var(--bd);text-align:center;position:relative;}
+.step-num{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;margin:0 auto 1rem;}
+.step-icon{font-size:32px;margin-bottom:.875rem;}
+.step-title{font-size:14px;font-weight:700;margin-bottom:6px;}
+.step-desc{font-size:12px;color:var(--txm);line-height:1.6;}
+
+/* PLANS */
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.plan-card{background:#fff;border-radius:20px;padding:1.75rem;border:1px solid var(--bd);position:relative;transition:transform .2s;}
+.plan-card:hover{transform:translateY(-4px);}
+.plan-card.featured{border:2px solid var(--m);background:var(--m1);}
+.plan-popular{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--m);color:#fff;font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;white-space:nowrap;}
+.plan-icon{font-size:36px;margin-bottom:1rem;}
+.plan-name{font-size:18px;font-weight:800;margin-bottom:4px;}
+.plan-tagline{font-size:12px;color:var(--txm);margin-bottom:1.25rem;}
+.plan-price{margin-bottom:1.25rem;}
+.plan-price .amount{font-size:32px;font-weight:800;color:var(--m);}
+.plan-price .period{font-size:13px;color:var(--txm);}
+.plan-price .original{font-size:14px;color:var(--txl);text-decoration:line-through;margin-right:6px;}
+.plan-features{list-style:none;margin-bottom:1.5rem;}
+.plan-features li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--txm);margin-bottom:8px;line-height:1.5;}
+.plan-features li::before{content:"✓";color:var(--m);font-weight:700;flex-shrink:0;margin-top:1px;}
+.plan-btn{width:100%;padding:12px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;border:none;transition:all .15s;}
+.plan-btn-primary{background:var(--m);color:#fff;}
+.plan-btn-primary:hover{background:var(--m4);}
+.plan-btn-secondary{background:#fff;color:var(--m4);border:2px solid var(--m2);}
+.plan-btn-secondary:hover{background:var(--m1);}
+
+/* PRODUCTS */
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.product-card{background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--bd);transition:transform .2s;}
+.product-card:hover{transform:translateY(-4px);}
+.product-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:72px;}
+.product-body{padding:1.25rem;}
+.product-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:.625rem;}
+.product-name{font-size:15px;font-weight:700;margin-bottom:4px;}
+.product-desc{font-size:12px;color:var(--txm);margin-bottom:.875rem;line-height:1.5;}
+.product-price{display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem;}
+.product-amount{font-size:18px;font-weight:800;color:var(--m);}
+.product-original{font-size:12px;color:var(--txl);text-decoration:line-through;}
+.product-discount{font-size:11px;font-weight:700;background:var(--r1);color:var(--r3);padding:2px 8px;border-radius:20px;}
+.add-btn{width:100%;padding:10px;border-radius:10px;font-size:13px;font-weight:700;background:var(--m);color:#fff;border:none;cursor:pointer;font-family:inherit;transition:background .15s;}
+.add-btn:hover{background:var(--m4);}
+
+/* TESTIMONIALS */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.tcard{background:#fff;border-radius:18px;padding:1.5rem;border:1px solid var(--bd);}
+.tcard-stars{color:#f0845a;font-size:16px;margin-bottom:.875rem;}
+.tcard-text{font-size:13px;color:var(--txm);line-height:1.7;margin-bottom:1.25rem;font-style:italic;}
+.tcard-author{display:flex;align-items:center;gap:10px;}
+.tcard-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
+.tcard-name{font-size:13px;font-weight:700;}
+.tcard-info{font-size:11px;color:var(--txm);}
+
+/* WHY US */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.why-card{background:#fff;border-radius:18px;padding:1.5rem;border:1px solid var(--bd);}
+.why-icon{font-size:32px;margin-bottom:.875rem;}
+.why-title{font-size:15px;font-weight:700;margin-bottom:6px;}
+.why-desc{font-size:13px;color:var(--txm);line-height:1.6;}
+
+/* CONTACT */
+.contact-wrap{background:linear-gradient(135deg,var(--m1),var(--l1));border-radius:24px;padding:3rem;text-align:center;}
+.contact-wrap h2{font-size:2rem;font-weight:800;margin-bottom:.75rem;}
+.contact-wrap p{font-size:15px;color:var(--txm);margin-bottom:2rem;}
+.contact-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.whatsapp-btn{background:#25D366;color:#fff;padding:13px 28px;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:opacity .15s;}
+.whatsapp-btn:hover{opacity:.9;}
+.email-btn{background:#fff;color:var(--tx);padding:13px 28px;border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--bd);transition:all .15s;}
+.email-btn:hover{background:var(--bg);}
+
+/* PAYMENT MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center;padding:1rem;}
+.modal-bg.open{display:flex;}
+.modal{background:#fff;border-radius:24px;padding:2rem;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;}
+.modal-title{font-size:18px;font-weight:800;}
+.modal-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--bd);background:var(--bg);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--txm);}
+.order-summary{background:var(--bg);border-radius:14px;padding:1rem;margin-bottom:1.5rem;}
+.order-item{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;}
+.order-total{display:flex;justify-content:space-between;font-size:15px;font-weight:700;border-top:1px solid var(--bd);padding-top:8px;margin-top:8px;}
+.payment-methods{margin-bottom:1.5rem;}
+.pm-title{font-size:13px;font-weight:700;color:var(--txm);margin-bottom:.875rem;text-transform:uppercase;letter-spacing:.5px;}
+.pm-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.pm-opt{border:2px solid var(--bd);border-radius:12px;padding:.875rem;cursor:pointer;text-align:center;transition:all .15s;}
+.pm-opt.selected{border-color:var(--m);background:var(--m1);}
+.pm-opt-icon{font-size:24px;margin-bottom:4px;}
+.pm-opt-label{font-size:12px;font-weight:600;color:var(--tx);}
+.pm-opt-sub{font-size:10px;color:var(--txm);}
+.form-group{margin-bottom:1rem;}
+.form-label{font-size:12px;font-weight:600;color:var(--txm);margin-bottom:5px;display:block;}
+.form-input{width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:10px;font-size:14px;font-family:inherit;background:#fff;color:var(--tx);}
+.form-input:focus{outline:none;border-color:var(--m);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.pay-btn{width:100%;padding:14px;border-radius:12px;font-size:15px;font-weight:700;background:var(--m);color:#fff;border:none;cursor:pointer;font-family:inherit;transition:background .15s;}
+.pay-btn:hover{background:var(--m4);}
+.secure-note{text-align:center;font-size:11px;color:var(--txl);margin-top:.875rem;display:flex;align-items:center;justify-content:center;gap:5px;}
+
+/* CART */
+.cart-fab{position:fixed;bottom:24px;right:24px;background:var(--m);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;box-shadow:0 4px 20px rgba(61,184,134,.4);z-index:99;border:none;transition:transform .2s;}
+.cart-fab:hover{transform:scale(1.08);}
+.cart-badge{position:absolute;top:-4px;right:-4px;background:var(--r3);color:#fff;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+
+/* FOOTER */
+footer{background:#1a1a1a;color:#ccc;padding:3rem 1.5rem 2rem;}
+.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem;}
+.footer-brand .brand-name{color:#fff;font-size:20px;}
+.footer-brand p{font-size:13px;color:#888;margin-top:.875rem;line-height:1.7;}
+.footer-col h4{font-size:13px;font-weight:700;color:#fff;margin-bottom:.875rem;}
+.footer-col a{display:block;font-size:13px;color:#888;text-decoration:none;margin-bottom:6px;transition:color .15s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid #333;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:#666;}
+.payment-icons{display:flex;gap:8px;align-items:center;}
+.payment-icon{background:#333;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;color:#ccc;}
+
+/* UTILITIES */
+.container{max-width:1100px;margin:0 auto;}
+.text-center{text-align:center;}
+.divider{height:1px;background:var(--bd);margin:0;}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:12px 24px;border-radius:12px;font-size:13px;font-weight:500;z-index:300;display:none;align-items:center;gap:8px;}
+.toast.show{display:flex;}
+
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-visual{display:none;}
+  .steps-grid{grid-template-columns:1fr 1fr;}
+  .plans-grid{grid-template-columns:1fr;}
+  .products-grid{grid-template-columns:1fr 1fr;}
+  .testimonials-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .form-row{grid-template-columns:1fr;}
+  .pm-options{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  .steps-grid{grid-template-columns:1fr;}
+  .products-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .hero{padding:3rem 1rem 2.5rem;}
+  section{padding:2.5rem 1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <div class="brand-dot"><svg viewBox="0 0 18 18"><path d="M9 1.5L11.8 7H17L12.6 10.6L14.3 16.5L9 13.1L3.7 16.5L5.4 10.6L1 7H6.2Z"/></svg></div>
+      <span class="brand-name">DIET<em>OLOGY</em></span>
+    </a>
+    <div class="nav-links">
+      <a href="#plans" class="nav-link">Diet Plans</a>
+      <a href="#products" class="nav-link">Products</a>
+      <a href="#how" class="nav-link">How it works</a>
+      <a href="#reviews" class="nav-link">Reviews</a>
+      <a href="#contact" class="nav-cta">Get started</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#plans" onclick="toggleMenu()">Diet Plans</a>
+    <a href="#products" onclick="toggleMenu()">Products</a>
+    <a href="#how" onclick="toggleMenu()">How it works</a>
+    <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+    <a href="#contact" onclick="toggleMenu()">Contact us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🌿 India's trusted dietitian platform</div>
+      <h1>Eat right.<br/>Live well.<br/><span>Feel amazing.</span></h1>
+      <p>Personalised diet plans designed by an expert dietitian — for weight loss, diabetes management, PCOS, heart health and more. Real results, real support.</p>
+      <div class="hero-btns">
+        <a href="#plans" class="btn-primary">View diet plans →</a>
+        <a href="#products" class="btn-secondary">Shop products</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-icon" style="background:var(--m1);">🥗</div>
+        <div>
+          <div style="font-size:14px;font-weight:700;">Personalised meal plans</div>
+          <div style="font-size:12px;color:var(--txm);margin-top:2px;">Customised for your body & goals</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon" style="background:var(--p1);">💊</div>
+        <div>
+          <div style="font-size:14px;font-weight:700;">Premium supplements</div>
+          <div style="font-size:12px;color:var(--txm);margin-top:2px;">Scientifically formulated for Indians</div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">500+</div><div class="hero-stat-label">Happy clients</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">95%</div><div class="hero-stat-label">Success rate</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">5★</div><div class="hero-stat-label">Avg rating</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">8yr</div><div class="hero-stat-label">Experience</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="background:#fff;">
+  <div class="section-inner text-center">
+    <div class="section-tag" style="background:var(--s1);color:var(--s3);">How it works</div>
+    <h2 class="section-title">Your health journey in 4 simple steps</h2>
+    <p class="section-sub" style="margin:0 auto;">Getting started is easy. No complicated processes — just results.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num" style="background:var(--m1);color:var(--m4);">1</div>
+        <div class="step-icon">📋</div>
+        <div class="step-title">Choose your plan</div>
+        <div class="step-desc">Pick the diet plan that matches your health goal — weight loss, diabetes, PCOS or general wellness.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num" style="background:var(--p1);color:var(--p3);">2</div>
+        <div class="step-icon">💳</div>
+        <div class="step-title">Pay securely</div>
+        <div class="step-desc">Pay via UPI, Paytm, PhonePe, credit/debit card or Stripe. Safe & instant.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num" style="background:var(--l1);color:var(--l3);">3</div>
+        <div class="step-icon">📱</div>
+        <div class="step-title">Get your plan</div>
+        <div class="step-desc">Receive your personalised weekly meal plan with reminders — accessible on any device.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num" style="background:var(--y1);color:var(--y3);">4</div>
+        <div class="step-icon">🌟</div>
+        <div class="step-title">See results</div>
+        <div class="step-desc">Follow your plan, track progress and see real results in weeks. Ongoing support included.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIET PLANS -->
+<section id="plans">
+  <div class="section-inner">
+    <div style="text-align:center;">
+      <div class="section-tag" style="background:var(--m1);color:var(--m4);">Diet plans</div>
+      <h2 class="section-title">Plans for every health goal</h2>
+      <p class="section-sub" style="margin:0 auto;">Each plan is personally designed by our expert dietitian and delivered to your device.</p>
+    </div>
+    <div class="plans-grid">
+
+      <div class="plan-card">
+        <div class="plan-icon">⚖️</div>
+        <div class="plan-name">Weight Loss Plan</div>
+        <div class="plan-tagline">For sustainable, healthy weight loss</div>
+        <div class="plan-price">
+          <span class="original">₹2,999</span>
+          <span class="amount">₹1,999</span>
+          <span class="period"> / 4 weeks</span>
+        </div>
+        <ul class="plan-features">
+          <li>Personalised 7-day meal plan</li>
+          <li>Weekly plan updates</li>
+          <li>1,400–1,800 kcal daily targets</li>
+          <li>Indian food options included</li>
+          <li>WhatsApp support</li>
+          <li>Progress tracking</li>
+        </ul>
+        <button class="plan-btn plan-btn-secondary" onclick="openPayment('Weight Loss Plan','₹1,999',1999,'INR')">Buy now — ₹1,999</button>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="plan-popular">Most popular</div>
+        <div class="plan-icon">🌟</div>
+        <div class="plan-name">Complete Wellness</div>
+        <div class="plan-tagline">Our most comprehensive plan</div>
+        <div class="plan-price">
+          <span class="original">₹5,999</span>
+          <span class="amount">₹3,999</span>
+          <span class="period"> / 8 weeks</span>
+        </div>
+        <ul class="plan-features">
+          <li>Personalised 7-day meal plan</li>
+          <li>Weekly plan updates</li>
+          <li>Custom calorie targets</li>
+          <li>Indian + international options</li>
+          <li>Priority WhatsApp support</li>
+          <li>Body composition analysis</li>
+          <li>Supplement recommendations</li>
+          <li>Recipe ideas included</li>
+        </ul>
+        <button class="plan-btn plan-btn-primary" onclick="openPayment('Complete Wellness Plan','₹3,999',3999,'INR')">Buy now — ₹3,999</button>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-icon">🩺</div>
+        <div class="plan-name">Medical Nutrition</div>
+        <div class="plan-tagline">For diabetes, PCOS & heart health</div>
+        <div class="plan-price">
+          <span class="original">₹4,999</span>
+          <span class="amount">₹2,999</span>
+          <span class="period"> / 4 weeks</span>
+        </div>
+        <ul class="plan-features">
+          <li>Condition-specific meal plan</li>
+          <li>Glycemic index controlled meals</li>
+          <li>Doctor-friendly reports</li>
+          <li>Anti-inflammatory food focus</li>
+          <li>WhatsApp support</li>
+          <li>Fortnightly check-ins</li>
+        </ul>
+        <button class="plan-btn plan-btn-secondary" onclick="openPayment('Medical Nutrition Plan','₹2,999',2999,'INR')">Buy now — ₹2,999</button>
+      </div>
+
+    </div>
+
+    <!-- Canada pricing note -->
+    <div style="background:var(--s1);border:1px solid var(--s2);border-radius:16px;padding:1.25rem 1.5rem;margin-top:1.5rem;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="font-size:24px;">🇨🇦</div>
+      <div>
+        <div style="font-size:14px;font-weight:700;color:var(--s3);">Based in Canada?</div>
+        <div style="font-size:13px;color:var(--s3);margin-top:2px;">We serve clients in Canada too! Pay in CAD via credit/debit card. Prices start from CAD $34.99. <a href="#contact" style="color:var(--s3);font-weight:700;">Contact us</a> for Canada pricing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" style="background:#fff;">
+  <div class="section-inner">
+    <div style="text-align:center;">
+      <div class="section-tag" style="background:var(--p1);color:var(--p3);">Wellness products</div>
+      <h2 class="section-title">Premium supplements for Indians</h2>
+      <p class="section-sub" style="margin:0 auto;">Carefully selected products to complement your diet plan and boost your results.</p>
+    </div>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-img" style="background:var(--m1);">🌿</div>
+        <div class="product-body">
+          <span class="product-badge" style="background:var(--m1);color:var(--m4);">Bestseller</span>
+          <div class="product-name">Whey Protein — Desi Masala</div>
+          <div class="product-desc">High quality whey protein with Indian flavours. 24g protein per serving. No artificial colours.</div>
+          <div class="product-price">
+            <div>
+              <div class="product-original">₹2,499</div>
+              <div class="product-amount">₹1,899</div>
+            </div>
+            <span class="product-discount">24% off</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Whey Protein — Desi Masala',1899)">Add to cart 🛒</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:var(--y1);">🌾</div>
+        <div class="product-body">
+          <span class="product-badge" style="background:var(--y1);color:var(--y3);">New</span>
+          <div class="product-name">Multivitamin for Women</div>
+          <div class="product-desc">Complete daily nutrition with iron, folate, B12 and Vitamin D3. Specially formulated for Indian women.</div>
+          <div class="product-price">
+            <div>
+              <div class="product-original">₹899</div>
+              <div class="product-amount">₹649</div>
+            </div>
+            <span class="product-discount">28% off</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Multivitamin for Women',649)">Add to cart 🛒</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:var(--l1);">🫐</div>
+        <div class="product-body">
+          <span class="product-badge" style="background:var(--l1);color:var(--l3);">Popular</span>
+          <div class="product-name">Omega-3 Fish Oil</div>
+          <div class="product-desc">High potency EPA & DHA for heart health, brain function and inflammation. Burp-free formula.</div>
+          <div class="product-price">
+            <div>
+              <div class="product-original">₹1,299</div>
+              <div class="product-amount">₹999</div>
+            </div>
+            <span class="product-discount">23% off</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Omega-3 Fish Oil',999)">Add to cart 🛒</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:var(--p1);">🍵</div>
+        <div class="product-body">
+          <span class="product-badge" style="background:var(--p1);color:var(--p3);">Herbal</span>
+          <div class="product-name">Detox Green Tea Blend</div>
+          <div class="product-desc">Ayurvedic blend with green tea, tulsi, ginger and ashwagandha. Boosts metabolism naturally.</div>
+          <div class="product-price">
+            <div>
+              <div class="product-original">₹599</div>
+              <div class="product-amount">₹449</div>
+            </div>
+            <span class="product-discount">25% off</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Detox Green Tea Blend',449)">Add to cart 🛒</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:var(--s1);">💪</div>
+        <div class="product-body">
+          <span class="product-badge" style="background:var(--s1);color:var(--s3);">Vegan</span>
+          <div class="product-name">Plant Protein — Vanilla</div>
+          <div class="product-desc">100% plant-based protein from pea & brown rice. 20g protein, easy to digest, lactose free.</div>
+          <div class="product-price">
+            <div>
+              <div class="product-original">₹1,999</div>
+              <div class="product-amount">₹1,499</div>
+            </div>
+            <span class="product-discount">25% off</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Plant Protein — Vanilla',1499)">Add to cart 🛒</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:var(--r1);">🫀</div>
+        <div class="product-body">
+          <span class="product-badge" style="background:var(--r1);color:var(--r3);">Premium</span>
+          <div class="product-name">Gut Health Probiotics</div>
+          <div class="product-desc">10 billion CFU probiotic with prebiotic fibre. Improves digestion, immunity and gut microbiome.</div>
+          <div class="product-price">
+            <div>
+              <div class="product-original">₹1,499</div>
+              <div class="product-amount">₹1,099</div>
+            </div>
+            <span class="product-discount">27% off</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Gut Health Probiotics',1099)">Add to cart 🛒</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section>
+  <div class="section-inner">
+    <div style="text-align:center;">
+      <div class="section-tag" style="background:var(--l1);color:var(--l3);">Why Dietology</div>
+      <h2 class="section-title">Your health deserves the best</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">🎓</div><div class="why-title">Expert dietitian</div><div class="why-desc">8+ years of clinical experience in nutrition and dietary management for all conditions.</div></div>
+      <div class="why-card"><div class="why-icon">🇮🇳</div><div class="why-title">Made for Indians</div><div class="why-desc">All meal plans use Indian foods — dal, roti, sabzi, rice. No western food you can't find locally.</div></div>
+      <div class="why-card"><div class="why-icon">📱</div><div class="why-title">Accessible anywhere</div><div class="why-desc">Access your plan on any phone or computer. Meal reminders sent directly to your device.</div></div>
+      <div class="why-card"><div class="why-icon">💬</div><div class="why-title">WhatsApp support</div><div class="why-desc">Direct access to your dietitian via WhatsApp. Get answers to your questions fast.</div></div>
+      <div class="why-card"><div class="why-icon">🔒</div><div class="why-title">Secure payments</div><div class="why-desc">Pay via UPI, Razorpay or Stripe. All transactions are encrypted and secure.</div></div>
+      <div class="why-card"><div class="why-icon">✅</div><div class="why-title">Proven results</div><div class="why-desc">95% of our clients see measurable results within the first 4 weeks of their plan.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="reviews" style="background:#fff;">
+  <div class="section-inner">
+    <div style="text-align:center;">
+      <div class="section-tag" style="background:var(--y1);color:var(--y3);">Client reviews</div>
+      <h2 class="section-title">Real results from real people</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-text">"I lost 8 kg in 6 weeks following the Weight Loss Plan. The meals were all Indian food I actually enjoy. Never felt hungry!"</div>
+        <div class="tcard-author">
+          <div class="tcard-av" style="background:var(--m1);color:var(--m4);">PS</div>
+          <div><div class="tcard-name">Priya S.</div><div class="tcard-info">Mumbai · Weight loss plan</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-text">"My HbA1c came down from 8.2 to 6.9 in 3 months. The medical nutrition plan is incredible for diabetics. Highly recommend!"</div>
+        <div class="tcard-author">
+          <div class="tcard-av" style="background:var(--s1);color:var(--s3);">RK</div>
+          <div><div class="tcard-name">Rajesh K.</div><div class="tcard-info">Delhi · Medical nutrition plan</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-text">"Being in Canada, I was worried but the plan worked perfectly. WhatsApp support is amazing — fast responses and very caring."</div>
+        <div class="tcard-author">
+          <div class="tcard-av" style="background:var(--l1);color:var(--l3);">AM</div>
+          <div><div class="tcard-name">Amandeep M.</div><div class="tcard-info">Toronto, Canada · Complete wellness</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-wrap">
+      <div style="font-size:48px;margin-bottom:1rem;">👋</div>
+      <h2>Ready to transform your health?</h2>
+      <p>Get in touch via WhatsApp or email. We'll help you choose the right plan for your goals.</p>
+      <div class="contact-btns">
+        <a href="https://wa.me/919999999999?text=Hi!%20I%20want%20to%20know%20more%20about%20Dietology%20plans" class="whatsapp-btn" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+        <a href="mailto:karnjit88@gmail.com" class="email-btn">
+          ✉️ Send an email
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand"><div class="brand-dot"><svg viewBox="0 0 18 18"><path d="M9 1.5L11.8 7H17L12.6 10.6L14.3 16.5L9 13.1L3.7 16.5L5.4 10.6L1 7H6.2Z"/></svg></div><span class="brand-name">DIET<em>OLOGY</em></span></div>
+        <p>Expert dietitian guidance for a healthier you. Serving clients across India and Canada.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Diet Plans</h4>
+        <a href="#plans">Weight Loss</a>
+        <a href="#plans">Complete Wellness</a>
+        <a href="#plans">Medical Nutrition</a>
+        <a href="#plans">Canada Plans</a>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="#products">Whey Protein</a>
+        <a href="#products">Multivitamins</a>
+        <a href="#products">Supplements</a>
+        <a href="#products">Herbal Teas</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="https://wa.me/919999999999" target="_blank">WhatsApp</a>
+        <a href="mailto:karnjit88@gmail.com">Email us</a>
+        <a href="#how">How it works</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Dietology. All rights reserved.</span>
+      <div class="payment-icons">
+        <span class="payment-icon">UPI</span>
+        <span class="payment-icon">Razorpay</span>
+        <span class="payment-icon">Stripe</span>
+        <span class="payment-icon">VISA</span>
+        <span class="payment-icon">MC</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- CART FAB -->
+<button class="cart-fab" onclick="openCart()" id="cart-fab" style="display:none;">
+  🛒
+  <span class="cart-badge" id="cart-count">0</span>
+</button>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-bg" id="payment-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Complete your order</div>
+      <button class="modal-close" onclick="closePayment()">✕</button>
+    </div>
+    <div class="order-summary" id="order-summary"></div>
+    <div class="payment-methods">
+      <div class="pm-title">Select payment method</div>
+      <div class="pm-options">
+        <div class="pm-opt selected" id="pm-razorpay" onclick="selectPM('razorpay')">
+          <div class="pm-opt-icon">🇮🇳</div>
+          <div class="pm-opt-label">Razorpay</div>
+          <div class="pm-opt-sub">UPI, Cards, Wallets</div>
+        </div>
+        <div class="pm-opt" id="pm-stripe" onclick="selectPM('stripe')">
+          <div class="pm-opt-icon">🌍</div>
+          <div class="pm-opt-label">Stripe</div>
+          <div class="pm-opt-sub">International Cards</div>
+        </div>
+      </div>
+    </div>
+    <div id="payment-form">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First name</label><input class="form-input" id="f-fname" placeholder="Priya"/></div>
+        <div class="form-group"><label class="form-label">Last name</label><input class="form-input" id="f-lname" placeholder="Sharma"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="f-email" placeholder="priya@email.com"/></div>
+      <div class="form-group"><label class="form-label">Phone / WhatsApp</label><input class="form-input" id="f-phone" placeholder="+91 98765 43210"/></div>
+    </div>
+    <button class="pay-btn" onclick="processPayment()" id="pay-btn">Pay securely</button>
+    <div class="secure-note">🔒 Secured by <span id="payment-label">Razorpay</span> · 256-bit SSL encryption</div>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="modal-bg" id="cart-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🛒 Your cart</div>
+      <button class="modal-close" onclick="closeCart()">✕</button>
+    </div>
+    <div id="cart-items"></div>
+    <div id="cart-checkout"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+let cart = []
+let currentOrder = {}
+let selectedPaymentMethod = 'razorpay'
+
+// ── NAVIGATION ──
+function toggleMenu(){
+  const m = document.getElementById('mobile-menu')
+  m.classList.toggle('open')
+}
+
+// ── TOAST ──
+function showToast(msg, duration=2500){
+  const t = document.getElementById('toast')
+  t.innerHTML = msg
+  t.classList.add('show')
+  setTimeout(()=>t.classList.remove('show'), duration)
+}
+
+// ── PAYMENT ──
+function openPayment(name, priceLabel, amount, currency){
+  currentOrder = { name, priceLabel, amount, currency }
+  document.getElementById('order-summary').innerHTML = `
+    <div class="order-item"><span>${name}</span><span>${priceLabel}</span></div>
+    <div class="order-item" style="color:var(--m);font-size:12px;"><span>✓ Personalised plan included</span><span></span></div>
+    <div class="order-total"><span>Total</span><span>${priceLabel}</span></div>`
+  document.getElementById('payment-modal').classList.add('open')
+  updatePayBtn()
+}
+
+function closePayment(){
+  document.getElementById('payment-modal').classList.remove('open')
+}
+
+function selectPM(method){
+  selectedPaymentMethod = method
+  document.getElementById('pm-razorpay').classList.toggle('selected', method==='razorpay')
+  document.getElementById('pm-stripe').classList.toggle('selected', method==='stripe')
+  document.getElementById('payment-label').textContent = method==='razorpay'?'Razorpay':'Stripe'
+  updatePayBtn()
+}
+
+function updatePayBtn(){
+  const btn = document.getElementById('pay-btn')
+  if(selectedPaymentMethod==='razorpay'){
+    btn.textContent = `Pay ${currentOrder.priceLabel} via Razorpay`
+  } else {
+    btn.textContent = `Pay ${currentOrder.priceLabel} via Stripe`
+  }
+}
+
+function processPayment(){
+  const fname = document.getElementById('f-fname').value.trim()
+  const email = document.getElementById('f-email').value.trim()
+  const phone = document.getElementById('f-phone').value.trim()
+  if(!fname){alert('Please enter your first name.');return}
+  if(!email){alert('Please enter your email.');return}
+  if(!phone){alert('Please enter your phone number.');return}
+
+  if(selectedPaymentMethod === 'razorpay'){
+    // Razorpay integration
+    // Replace 'YOUR_RAZORPAY_KEY' with your actual Razorpay key_id
+    const options = {
+      key: 'YOUR_RAZORPAY_KEY_ID',
+      amount: currentOrder.amount * 100, // in paise
+      currency: 'INR',
+      name: 'Dietology',
+      description: currentOrder.name,
+      handler: function(response){
+        closePayment()
+        showToast('✅ Payment successful! You will receive your plan on WhatsApp within 24 hours.')
+        sendWhatsAppNotification(fname, email, phone, currentOrder.name, currentOrder.priceLabel)
+      },
+      prefill: { name: fname, email: email, contact: phone },
+      theme: { color: '#3db886' }
+    }
+    // Load Razorpay script dynamically
+    if(typeof Razorpay === 'undefined'){
+      const script = document.createElement('script')
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js'
+      script.onload = ()=>{ new Razorpay(options).open() }
+      document.head.appendChild(script)
+    } else {
+      new Razorpay(options).open()
+    }
+  } else {
+    // Stripe — redirect to Stripe payment link
+    // Replace with your actual Stripe payment link
+    const stripeUrl = 'https://buy.stripe.com/YOUR_STRIPE_PAYMENT_LINK'
+    closePayment()
+    showToast('Redirecting to Stripe checkout...')
+    setTimeout(()=> window.open(stripeUrl, '_blank'), 1000)
+  }
+}
+
+function sendWhatsAppNotification(name, email, phone, planName, price){
+  // Auto-notify yourself on WhatsApp when a payment is received
+  // Replace with your actual WhatsApp number
+  const yourNumber = '919999999999'
+  const msg = encodeURIComponent(`🎉 New order!\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nPlan: ${planName}\nAmount: ${price}`)
+  window.open(`https://wa.me/${yourNumber}?text=${msg}`, '_blank')
+}
+
+// ── CART ──
+function addToCart(name, price){
+  const existing = cart.find(i=>i.name===name)
+  if(existing){
+    existing.qty++
+  } else {
+    cart.push({name, price, qty:1})
+  }
+  updateCartUI()
+  showToast(`✅ ${name} added to cart!`)
+}
+
+function updateCartUI(){
+  const total = cart.reduce((s,i)=>s+i.qty,0)
+  const fab = document.getElementById('cart-fab')
+  const badge = document.getElementById('cart-count')
+  fab.style.display = total > 0 ? 'flex' : 'none'
+  badge.textContent = total
+}
+
+function openCart(){
+  const items = document.getElementById('cart-items')
+  const checkout = document.getElementById('cart-checkout')
+  if(!cart.length){
+    items.innerHTML='<div style="text-align:center;padding:2rem;color:var(--txm);">Your cart is empty</div>'
+    checkout.innerHTML=''
+    document.getElementById('cart-modal').classList.add('open')
+    return
+  }
+  const total = cart.reduce((s,i)=>s+(i.price*i.qty),0)
+  items.innerHTML = cart.map((item,idx)=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--bd);">
+      <div><div style="font-size:13px;font-weight:600;">${item.name}</div><div style="font-size:12px;color:var(--txm);">₹${item.price.toLocaleString('en-IN')} × ${item.qty}</div></div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:14px;font-weight:700;">₹${(item.price*item.qty).toLocaleString('en-IN')}</span>
+        <button onclick="removeFromCart(${idx})" style="background:var(--r1);color:var(--r3);border:1px solid var(--r2);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:12px;">Remove</button>
+      </div>
+    </div>`).join('')
+  checkout.innerHTML=`
+    <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;padding:1rem 0;">
+      <span>Total</span><span style="color:var(--m);">₹${total.toLocaleString('en-IN')}</span>
+    </div>
+    <button class="pay-btn" onclick="checkoutCart(${total})">Proceed to pay — ₹${total.toLocaleString('en-IN')}</button>`
+  document.getElementById('cart-modal').classList.add('open')
+}
+
+function removeFromCart(idx){
+  cart.splice(idx,1)
+  updateCartUI()
+  openCart()
+}
+
+function closeCart(){
+  document.getElementById('cart-modal').classList.remove('open')
+}
+
+function checkoutCart(total){
+  closeCart()
+  const itemNames = cart.map(i=>`${i.name} ×${i.qty}`).join(', ')
+  openPayment(itemNames, `₹${total.toLocaleString('en-IN')}`, total, 'INR')
+}
+
+// Close modals on backdrop click
+document.querySelectorAll('.modal-bg').forEach(bg=>{
+  bg.addEventListener('click', e=>{
+    if(e.target===bg) bg.classList.remove('open')
+  })
+})
+</script>
+</body>
+</html>
